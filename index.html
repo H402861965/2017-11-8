@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<!--
+			本地存储：
+			 cookie:用法 ：document.cookie//以字符串的键值对方式
+				 name =  value;
+				 document.cookie 取全部数据
+				 
+			 cookie的范围：在谷歌下 必须服务器环境下打开才会有 >>例：用Hbuider打开
+						  火狐和IE不需要服务器环境
+			 cookie存储量 ：IE：20条 谷歌和火狐：30-50左右  默认选20条
+			 
+			 cookie修改数据：document.cookie="name1=13"  name相同会覆盖
+			 
+			 cookie作用时间：
+			   sessin时间 从打开网页开始计算 ，关闭了浏览器就没有数了 、、默认
+			 cookie 设置时间：var detes = new Date();
+							detes.setDate(detes.getDate()+1)
+							document.cookie="name1=13;expires="+detes//设置
+			  删除一条cookie 让他过期
+			   
+		-->
+		
+		<div class="box">
+			用户：<input type="text" id="user" /><br />
+			密码：<input type="password" id="pass" /><br /><br />
+			<button id="btn">登陆</button>
+		</div>
+	</body>
+	<script>
+//		document.cookie="name=12"
+//		document.cookie="name1=13"
+		
+		var user=document.getElementById("user");
+		var pass=document.getElementById("pass")
+		var btn=document.getElementById("btn")
+		
+//		var detes = new Date();
+//		detes.setDate(detes.getDate()+1)
+//
+//		
+//		document.cookie="name1=13;expire="+detes//设置时间
+//		var arr= document.cookie.split(";")
+//		
+//		var obj={}
+//		
+//		for(var i=0;i<arr.length;i++){
+//			var brr  = arr[i].trim().split("=")
+//			obj[brr[0]]=brr[1]
+//		}
+//		
+//		console.log(obj["name1"])
+		play();
+		btn.onclick=function(){
+			document.cookie="user="+user.value;
+			document.cookie="pass="+pass.value;
+		}
+		
+		function play(){
+			var arr= document.cookie.split(";");
+			var obj={};
+			for(var i=0;i<arr.length;i++){
+			var brr  = arr[i].trim().split("=")
+			obj[brr[0]]=brr[1]
+		}
+			user.value=obj.user;
+			pass.value=obj.pass;
+			
+		}
+	</script>
+</html>
